@@ -78,6 +78,14 @@ main{
         font-size: 20px;
         padding: 0px 50px;
     }
+    nav{
+        position: sticky;
+        top: 0px;
+        z-index: 1;
+    }
+    .ace_gutter{
+        z-index: 0;
+    }
     .checkbtn{
         display: block;
     }
@@ -111,7 +119,7 @@ main{
     }
     .editor , .output{
         height: 50%;
-        transition-property: z-index;
-        transition-delay: 1s;
+        /* transition-property: z-index;
+        transition-delay: 1s; */
     }
 }

@@ -73,15 +73,13 @@ function updateoutput(){
 }
 editor.getSession().addEventListener('change', updateoutput);
 
-document.getElementById("check").addEventListener("click",function(){
-    var editor = document.getElementById("editor");
-    if(editor.style.zIndex == -1){
-        editor.style.transitionDelay = 1;
-        editor.style.zIndex = 1;
-    }
-    else
-    {
-        editor.style.transitionDelay = 0;
-        editor.style.zIndex = -1;
-    }
-});
+// document.getElementById("check").addEventListener("click",function(){
+//     var editor = document.getElementById("editor");
+//     if(editor.style.zIndex == -1){
+//         editor.style.zIndex = 1;
+//     }
+//     else
+//     {
+//         editor.style.zIndex = -1;
+//     }
+// });
