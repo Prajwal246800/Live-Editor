@@ -55,7 +55,7 @@ var themes = [
 ];
 
 var n = 36 , i = 0;
-document.getElementById("changeTheme").addEventListener("click",changeTheme);
+// document.getElementById("changeTheme").addEventListener("click",changeTheme);
 function changeTheme(){
     editor.setTheme(`${themes[i++]}`);
     if(i == n)
