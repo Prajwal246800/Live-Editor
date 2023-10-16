@@ -55,7 +55,7 @@ var themes = [
 ];
 
 var n = 36 , i = 0;
-// document.getElementById("changeTheme").addEventListener("click",changeTheme);
+document.getElementById("changeTheme").addEventListener("click",changeTheme);
 function changeTheme(){
     editor.setTheme(`${themes[i++]}`);
     if(i == n)
@@ -72,3 +72,11 @@ function updateoutput(){
     output.contentDocument.close();
 }
 editor.getSession().addEventListener('change', updateoutput);
+
+document.getElementById("check").addEventListener("click",function(){
+    var editor = document.getElementById("editor");
+    if(editor.style.zIndex == -1)
+        editor.style.zIndex = 1;
+    else
+        editor.style.zIndex = -1;
+});
