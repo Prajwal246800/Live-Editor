@@ -111,6 +111,7 @@ main{
     }
     .editor , .output{
         height: 50%;
+        transition-property: z-index;
         transition-delay: 1s;
     }
 }
