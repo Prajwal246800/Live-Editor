@@ -1,5 +1,5 @@
 const login = document.querySelector("#login");
 login.addEventListener("click",function(){
-    window.open("./index.html");
+    window.location.href = "./index.html";
 }
 );
