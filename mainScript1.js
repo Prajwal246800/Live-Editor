@@ -1,12 +1,8 @@
-alert("Website Is Still Being Built Not All Functionalities Are Working Wait For Updates.");
-var editor1 = document.querySelector("#editor1");
-var editor2 = document.querySelector("#editor2");
-var editor3 = document.querySelector("#editor3");
-
-editor = ace.edit("editor1");
-editor.setTheme("ace/theme/monokai");
-editor.getSession().setMode("ace/mode/html");
-editor.getSession().setValue(`<!DOCTYPE html>
+alert("Website Is Still Being Built Not All Functionalities Are Added Wait For New Features.")
+editor1 = ace.edit("editor1");
+editor1.setTheme("ace/theme/monokai");
+editor1.getSession().setMode("ace/mode/html");
+editor1.getSession().setValue(`<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -27,7 +23,6 @@ editor2.getSession().setMode("ace/mode/css");
 editor3 = ace.edit("editor3");
 editor3.setTheme("ace/theme/monokai");
 editor3.getSession().setMode("ace/mode/javascript");
-
 
 var themes = [
     "ace/theme/ambiance",
@@ -67,41 +62,27 @@ var themes = [
     "ace/theme/vibrant_ink",
     "ace/theme/xcode"
 ];
+
 var n = 36 , i = 0;
 document.getElementById("changeTheme").addEventListener("click",changeTheme);
 function changeTheme(){
-    editor.setTheme(`${themes[i++]}`);
+    editor1.setTheme(`${themes[i++]}`);
+    editor2.setTheme(`${themes[i++]}`);
+    editor3.setTheme(`${themes[i++]}`);
     if(i == n)
         i = 0;
-    
 }
-var editor1 = document.querySelector("#editor1");
-var editor2 = document.querySelector("#editor2");
-var editor3 = document.querySelector("#editor3");
+var output = document.getElementById("output");
 function updateoutput(){
-    var code = editor.getSession().getValue();
+    var code = editor1.getSession().getValue();
     output.contentDocument.open();
     output.contentDocument.write(code);
     output.contentDocument.close();
-    // var indexCode = editor1.getSession().getValue();
-    // var styleCode = editor2.getSession().getValue();
-    // var scriptCode = editor3.getSession().getValue();
-    // var iframeDoc = document.getElementById('output').contentDocument;
-    // var iframeHead = iframeDoc.head;
-    // var iframeBody = iframeDoc.body;
-    // var styleElement = iframeDoc.createElement('style');
-    // styleElement.innerText = styleCode;
-    // iframeHead.appendChild(styleElement);
-    // var scriptElement = iframeDoc.createElement('script');
-    // scriptElement.innerText = scriptCode;
-    // iframeBody.appendChild(scriptElement);
-    // iframeBody.innerHTML += indexCode;
-}
-editor.getSession().addEventListener('change', updateoutput);
+    }
+editor1.getSession().addEventListener('change', updateoutput);
 
 document.getElementById("check").addEventListener("click",function(){
     var ace_scrollbar = document.querySelectorAll(".ace_scrollbar-inner");
-    console.log(ace_scrollbar)
     if(ace_scrollbar[1].style.display == "none"){
         setTimeout(()=>{
             ace_scrollbar[1].style.display = "block";
@@ -112,7 +93,9 @@ document.getElementById("check").addEventListener("click",function(){
         ace_scrollbar[1].style.display = "none";
     }
 });
-
+var editor1 = document.getElementById("editor1");
+var editor2 = document.getElementById("editor2");
+var editor3 = document.getElementById("editor3");
 document.querySelector("#indexEditor").addEventListener("click", function(){
     editor1.style.display = "block";
     editor2.style.display = "none";

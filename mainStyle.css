@@ -51,6 +51,9 @@ main{
 .ace_mobile-button{
     display: none;
 }
+.editor2,.editor3{
+    display: none;
+}
 @media(min-width : 858px){
     .logo{
         font-size: 30px;
@@ -84,8 +87,12 @@ main{
         border-radius: 5px ;
         color: white;
     }
-    .editor{
+    .editorContainer{
         width: 50%;
+    }
+    .editor,.editor1,.editor2,.editor3{
+        width: 100%;
+        height: 100%;
     }
     .output{
         width: 50%;
@@ -148,8 +155,12 @@ main{
         color: white;
         font-size: 10px;
     }
-    .editor , .output{
+    .editorContainer , .output{
         height: 50%;
+    }
+    .editor,.editor1,.editor2,.editor3{
+        height: 100%;
+        width: 100%;
     }
     .ace_gutter , .ace_scrollbar-inner{
         z-index: 0;
