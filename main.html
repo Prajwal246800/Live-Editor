@@ -19,13 +19,18 @@
             <label class="logo">LOGO</label>
             <ul>
                 <li><a href="#" class="active">PLAYGROUND</a></li>
-                <li><a id="changeTheme">CHANGE THEME</a></li>
+                <li><a id="changeTheme"><ruby>CHANGE&nbsp;THEME<rt>EDITOR</rt></ruby></a></li>
                 <li><a href="#">PROFILE</a></li>
             </ul>
         </nav>
         <main>
+            <div class="menu">
+                <button id="index">index.html</button>
+                <button id="index">style.css</button>
+                <button id="index">script.js</button>
+            </div>
             <div class="editor" id="editor"></div>
-            <iframe class="output" id="output"></iframe>
+            <iframe class="output" id="output" style="border: 5px solid rgb(0, 0, 0);"></iframe>
         </main>
         <script src="mainScript.js"></script>
     </header>

@@ -1,3 +1,4 @@
+alert("Website Is Still Being Built Not All Functionalities Are Added Wait For New Features.")
 var editor = document.getElementById('editor');
 editor = ace.edit("editor");
 editor.setTheme("ace/theme/monokai");
@@ -8,10 +9,11 @@ editor.getSession().setValue(`<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style type="text/css"></style>
+    <style type="text/css" src="style.css"></style>
 </head>
 <body>
     
+    <script type="text/javascript" src="script.js"></script>
 </body>
 </html>`);
 
