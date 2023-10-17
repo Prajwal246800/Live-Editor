@@ -1,5 +1,5 @@
 const button = document.querySelector("#btn");
-button.addEventListener("click",function submit(){
+button.addEventListener("click",function(){
     if(document.querySelector("#pass").value == "user@123" && document.querySelector("#uname").value == "user")
     {
         window.open("./main.html");
@@ -7,5 +7,10 @@ button.addEventListener("click",function submit(){
     else{
         alert("Wrong credentials");
     }
+}
+);
+const Register = document.querySelector("#register");
+Register.addEventListener("click",function(){
+    window.open("./Register.html");
 }
 );
