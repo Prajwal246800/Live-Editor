@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Editor</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+
+    <link rel="stylesheet" href="mainStyle.css">
+</head>
+<body>
+    <header>
+        
+        <nav>
+            <input type="checkbox" id="check">
+            <label  for="check" class="checkbtn">
+                <i>&#9776;</i>
+            </label>
+            <label class="logo">LOGO</label>
+            <ul>
+                <li><a href="#" class="active">HOME</a></li>
+                <li><a href="#">PLAYGROUND</a></li>
+                <li><a id="changeTheme">CHANGE THEME</a></li>
+                <li><a href="#">PROFILE</a></li>
+            </ul>
+        </nav>
+        <main>
+            <div class="editor" id="editor"></div>
+            <iframe class="output" id="output"></iframe>
+        </main>
+        <script src="mainScript.js"></script>
+    </header>
+</body>
+</html>

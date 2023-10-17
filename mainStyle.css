@@ -83,7 +83,7 @@ main{
         top: 0px;
         z-index: 1;
     }
-    .ace_gutter{
+    .ace_gutter , .ace_scrollbar-inner{
         z-index: 0;
     }
     .checkbtn{
@@ -121,5 +121,5 @@ main{
         height: 50%;
         /* transition-property: z-index;
         transition-delay: 1s; */
-    }
+    }   
 }

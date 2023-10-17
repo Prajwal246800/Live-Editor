@@ -73,13 +73,16 @@ function updateoutput(){
 }
 editor.getSession().addEventListener('change', updateoutput);
 
-// document.getElementById("check").addEventListener("click",function(){
-//     var editor = document.getElementById("editor");
-//     if(editor.style.zIndex == -1){
-//         editor.style.zIndex = 1;
-//     }
-//     else
-//     {
-//         editor.style.zIndex = -1;
-//     }
-// });
+document.getElementById("check").addEventListener("click",function(){
+    var ace_scrollbar = document.querySelectorAll(".ace_scrollbar-inner");
+    console.log(ace_scrollbar)
+    if(ace_scrollbar[1].style.display == "none"){
+        setTimeout(()=>{
+            ace_scrollbar[1].style.display = "block";
+        },500);
+    }
+    else
+    {
+        ace_scrollbar[1].style.display = "none";
+    }
+});
