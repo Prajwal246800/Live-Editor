@@ -1,33 +1,76 @@
 alert("Website Is Still Being Built Not All Functionalities Are Working Wait For Updates.");
-var editor1 = document.querySelector("#editor1");
-var editor2 = document.querySelector("#editor2");
-var editor3 = document.querySelector("#editor3");
-
-editor = ace.edit("editor1");
-editor.setTheme("ace/theme/monokai");
-editor.getSession().setMode("ace/mode/html");
-editor.getSession().setValue(`<!DOCTYPE html>
+var htmlEditor = ace.edit("htmlEditor");
+htmlEditor.getSession().setMode("ace/mode/html");
+htmlEditor = ace.edit("htmlEditor");
+htmlEditor.setTheme("ace/theme/monokai");
+htmlEditor.getSession().setMode("ace/mode/html");
+htmlEditor.getSession().setValue(`<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style type="text/css" src="style.css"></style>
 </head>
 <body>
     
-    <script type="text/javascript" src="script.js"></script>
 </body>
 </html>`);
+var cssEditor = ace.edit("cssEditor");
+cssEditor.getSession().setMode("ace/mode/css");
+cssEditor.setTheme("ace/theme/monokai");
+var jsEditor = ace.edit("jsEditor");
+jsEditor.getSession().setMode("ace/mode/javascript");
+jsEditor.setTheme("ace/theme/monokai");
+var output = document.getElementById("output")
 
-editor2 = ace.edit("editor2");
-editor2.setTheme("ace/theme/monokai");
-editor2.getSession().setMode("ace/mode/css");
+function updateoutput(){
+    var htmlCode = htmlEditor.getValue();
+    var cssCode = cssEditor.getValue();
+    var jsCode = jsEditor.getValue();
+    var styleElement = output.contentDocument.createElement('style');
+    styleElement.innerHTML = cssCode;
+    output.contentDocument.head.appendChild(styleElement);
+    var scriptElement = output.contentDocument.createElement('script');
+    scriptElement.innerHTML = jsCode;
+    output.contentDocument.body.appendChild(scriptElement);
+    output.contentDocument.body.innerHTML = htmlCode;
+}
+htmlEditor.getSession().on('change', updateoutput);
+cssEditor.getSession().on('change', updateoutput);
+jsEditor.getSession().on('change', updateoutput);
 
-editor3 = ace.edit("editor3");
-editor3.setTheme("ace/theme/monokai");
-editor3.getSession().setMode("ace/mode/javascript");
+document.getElementById("check").addEventListener("click",function(){
+    var ace_scrollbar = document.querySelectorAll(".ace_scrollbar-inner");
+    console.log(ace_scrollbar)
+    if(ace_scrollbar[1].style.display == "none"){
+        setTimeout(()=>{
+            ace_scrollbar[1].style.display = "block";
+        },500);
+    }
+    else
+    {
+        ace_scrollbar[1].style.display = "none";
+    }
+});
 
+var htmlEdit = document.getElementById("htmlEditor");
+var cssEdit = document.getElementById("cssEditor");
+var jsEdit = document.getElementById("jsEditor");
+document.querySelector("#indexEditor").addEventListener("click", function(){
+    htmlEdit.style.display = "block";
+    cssEdit.style.display = "none";
+    jsEdit.style.display = "none";
+})
+document.querySelector("#styleEditor").addEventListener("click", function(){
+    htmlEdit.style.display = "none";
+    cssEdit.style.display = "block";
+    jsEdit.style.display = "none";
+})
+document.querySelector("#scriptEditor").addEventListener("click", function(){
+    htmlEdit.style.display = "none";
+    cssEdit.style.display = "none";
+    jsEdit.style.display = "block";
+})
 
 var themes = [
     "ace/theme/ambiance",
@@ -70,61 +113,10 @@ var themes = [
 var n = 36 , i = 0;
 document.getElementById("changeTheme").addEventListener("click",changeTheme);
 function changeTheme(){
-    editor.setTheme(`${themes[i++]}`);
+    htmlEditor.setTheme(`${themes[i]}`);
+    cssEditor.setTheme(`${themes[i]}`);
+    jsEditor.setTheme(`${themes[i++]}`);
     if(i == n)
         i = 0;
     
 }
-var editor1 = document.querySelector("#editor1");
-var editor2 = document.querySelector("#editor2");
-var editor3 = document.querySelector("#editor3");
-function updateoutput(){
-    var code = editor.getSession().getValue();
-    output.contentDocument.open();
-    output.contentDocument.write(code);
-    output.contentDocument.close();
-    // var indexCode = editor1.getSession().getValue();
-    // var styleCode = editor2.getSession().getValue();
-    // var scriptCode = editor3.getSession().getValue();
-    // var iframeDoc = document.getElementById('output').contentDocument;
-    // var iframeHead = iframeDoc.head;
-    // var iframeBody = iframeDoc.body;
-    // var styleElement = iframeDoc.createElement('style');
-    // styleElement.innerText = styleCode;
-    // iframeHead.appendChild(styleElement);
-    // var scriptElement = iframeDoc.createElement('script');
-    // scriptElement.innerText = scriptCode;
-    // iframeBody.appendChild(scriptElement);
-    // iframeBody.innerHTML += indexCode;
-}
-editor.getSession().addEventListener('change', updateoutput);
-
-document.getElementById("check").addEventListener("click",function(){
-    var ace_scrollbar = document.querySelectorAll(".ace_scrollbar-inner");
-    console.log(ace_scrollbar)
-    if(ace_scrollbar[1].style.display == "none"){
-        setTimeout(()=>{
-            ace_scrollbar[1].style.display = "block";
-        },500);
-    }
-    else
-    {
-        ace_scrollbar[1].style.display = "none";
-    }
-});
-
-document.querySelector("#indexEditor").addEventListener("click", function(){
-    editor1.style.display = "block";
-    editor2.style.display = "none";
-    editor3.style.display = "none";
-})
-document.querySelector("#styleEditor").addEventListener("click", function(){
-    editor1.style.display = "none";
-    editor2.style.display = "block";
-    editor3.style.display = "none";
-})
-document.querySelector("#scriptEditor").addEventListener("click", function(){
-    editor1.style.display = "none";
-    editor2.style.display = "none";
-    editor3.style.display = "block";
-})

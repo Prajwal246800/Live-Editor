@@ -51,7 +51,7 @@ main{
 .ace_mobile-button{
     display: none;
 }
-.editor2,.editor3{
+.cssEditor,.jsEditor{
     display: none;
 }
 @media(min-width : 858px){
@@ -90,7 +90,7 @@ main{
     .editorContainer{
         width: 50%;
     }
-    .editor,.editor1,.editor2,.editor3{
+    .editor,.htmlEditor,.cssEditor,.jsEditor{
         width: 100%;
         height: 100%;
     }
@@ -158,7 +158,7 @@ main{
     .editorContainer , .output{
         height: 50%;
     }
-    .editor,.editor1,.editor2,.editor3{
+    .editor,.htmlEditor,.cssEditor,.jsEditor{
         height: 100%;
         width: 100%;
     }
