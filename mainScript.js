@@ -27,13 +27,16 @@ function updateoutput(){
     var htmlCode = htmlEditor.getValue();
     var cssCode = cssEditor.getValue();
     var jsCode = jsEditor.getValue();
-    var styleElement = output.contentDocument.createElement('style');
+    output.contentDocument.open();
+    output.contentDocument.write(htmlCode);
+    output.contentDocument.close();
+    var styleElement = document.createElement('style');
     styleElement.innerHTML = cssCode;
     output.contentDocument.head.appendChild(styleElement);
-    var scriptElement = output.contentDocument.createElement('script');
+    var scriptElement = document.createElement('script');
     scriptElement.innerHTML = jsCode;
     output.contentDocument.body.appendChild(scriptElement);
-    output.contentDocument.body.innerHTML = htmlCode;
+    console.log(htmlCode);
 }
 htmlEditor.getSession().on('change', updateoutput);
 cssEditor.getSession().on('change', updateoutput);

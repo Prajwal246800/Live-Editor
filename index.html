@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Editor</title>
     <link rel="stylesheet" href="loginStyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -29,7 +30,24 @@
             </form>
         </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script type="text/javascript" src="loginScript.js"></script>
+    <script type="text/javascript">
+        const button = document.querySelector("#btn");
+        button.addEventListener("click",function(event){
+            if(document.querySelector("#pass").value == "user@123" && document.querySelector("#uname").value == "user")
+            {
+                event.preventDefault();
+                window.location.href = "./main.html";
+            }
+            else{
+                alert("Wrong credentials");
+            }
+        }
+        );
+        const Register = document.querySelector("#register");
+        Register.addEventListener("click",function(){
+            window.location.href = "./Register.html";
+        }
+        );
+    </script>
 </body>
 </html>
