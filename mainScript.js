@@ -36,7 +36,6 @@ function updateoutput(){
     var scriptElement = document.createElement('script');
     scriptElement.innerHTML = jsCode;
     output.contentDocument.body.appendChild(scriptElement);
-    console.log(htmlCode);
 }
 htmlEditor.getSession().on('change', updateoutput);
 cssEditor.getSession().on('change', updateoutput);
@@ -59,20 +58,44 @@ document.getElementById("check").addEventListener("click",function(){
 var htmlEdit = document.getElementById("htmlEditor");
 var cssEdit = document.getElementById("cssEditor");
 var jsEdit = document.getElementById("jsEditor");
-document.querySelector("#indexEditor").addEventListener("click", function(){
+const indexEditor = document.querySelector("#indexEditor");
+const styleEditor = document.querySelector("#styleEditor");
+const scriptEditor = document.querySelector("#scriptEditor");
+indexEditor.addEventListener("click", function(){
     htmlEdit.style.display = "block";
     cssEdit.style.display = "none";
     jsEdit.style.display = "none";
+    indexEditor.classList.add("active");
+    if (scriptEditor.classList.contains("active")) {
+        scriptEditor.classList.remove("active");
+    }
+    if (styleEditor.classList.contains("active")) {
+        styleEditor.classList.remove("active");
+    }
 })
-document.querySelector("#styleEditor").addEventListener("click", function(){
+styleEditor.addEventListener("click", function(){
     htmlEdit.style.display = "none";
     cssEdit.style.display = "block";
     jsEdit.style.display = "none";
+    styleEditor.classList.add("active");
+    if (scriptEditor.classList.contains("active")) {
+        scriptEditor.classList.remove("active");
+    }
+    if (indexEditor.classList.contains("active")) {
+        indexEditor.classList.remove("active");
+    }
 })
 document.querySelector("#scriptEditor").addEventListener("click", function(){
     htmlEdit.style.display = "none";
     cssEdit.style.display = "none";
     jsEdit.style.display = "block";
+    scriptEditor.classList.add("active");
+    if (indexEditor.classList.contains("active")) {
+        indexEditor.classList.remove("active");
+    }
+    if (styleEditor.classList.contains("active")) {
+        styleEditor.classList.remove("active");
+    }
 })
 
 var themes = [

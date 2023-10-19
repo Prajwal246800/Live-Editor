@@ -54,6 +54,14 @@ main{
 .cssEditor,.jsEditor{
     display: none;
 }
+nav ul li a:hover , .menu button:hover{
+    cursor:pointer;
+}
+.menu button:hover, .menu .active{
+    transition-duration: 0.5s;
+    background-color: rgb(98, 98, 98);
+    color: black;
+}
 @media(min-width : 858px){
     .logo{
         font-size: 30px;
@@ -154,6 +162,7 @@ main{
         border-radius: 5px;
         color: white;
         font-size: 10px;
+        cursor: pointer;
     }
     .editorContainer , .output{
         height: 50%;
