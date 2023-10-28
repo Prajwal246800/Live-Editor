@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
 }
 body{
     display: flex;
@@ -57,14 +58,6 @@ h2{
 .input-box input:focus,
 .input-box input:focus {
     border-color: #0ef;
-}
-.input-box input:focus ~ label,
-.input-box input:focus ~ label {
-    top: 0px;
-    font-size: 0.8em;
-    background-color: #1f293a;
-    padding: 0 6px;
-    color: #0ef;
 }
 .forgot-password{
     margin:-15px 0px 10px 0px;

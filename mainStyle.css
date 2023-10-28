@@ -4,6 +4,7 @@
     text-decoration: none;
     list-style: none;
     box-sizing: border-box;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
 }
 nav{
     background-color: #222;
@@ -110,21 +111,24 @@ nav ul li a:hover , .menu button:hover{
     .logo{
         font-size: 20px;
         padding: 0px 50px;
+        line-height: 50px;
     }
     nav{
         position: sticky;
         top: 0px;
+        height: 50px;
         z-index: 1;
     }
     .checkbtn{
         display: block;
+        line-height: 50px;
     }
     ul{
         position: fixed;
         width: 100%;
         height: 100vh;
         background-color: #2c3e50;
-        top: 80px;
+        top: 50px;
         left: -100%;
         text-align: center;
         transition: all 0.5s;
@@ -151,8 +155,9 @@ nav ul li a:hover , .menu button:hover{
         display: flex;
         flex-direction: row;
         width: 100%;
-        height: 30px;
+        height: 40px;
         background-color: #14161a;
+        padding:5px;
     }
     .menu button{
         padding: 0px 10px 0px 10px;
@@ -174,4 +179,17 @@ nav ul li a:hover , .menu button:hover{
     .ace_gutter , .ace_scrollbar-inner{
         z-index: 0;
     }
+}
+.profile{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.profile img{
+    width: 50%;
+    border-radius: 50%;
+}
+.profile label{
+    padding: 10px 10px;
 }

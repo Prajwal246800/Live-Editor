@@ -48,6 +48,20 @@
             window.location.href = "./Register.html";
         }
         );
+        function changelabel() {
+            const inputElements = document.querySelectorAll('.input-box input');
+            inputElements.forEach(input => {
+                input.addEventListener('focus', function() {
+                    const label = input.nextElementSibling;
+                    label.style.top = '0px';
+                    label.style.fontSize = '0.8em';
+                    label.style.backgroundColor = '#1f293a';
+                    label.style.padding = '0 6px';
+                    label.style.color = '#0ef';
+                });
+            });
+        }
+        changelabel();
     </script>
 </body>
 </html>
