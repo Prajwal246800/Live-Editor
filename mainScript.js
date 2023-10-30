@@ -1,7 +1,6 @@
 alert("Website Is Still Being Built Not All Functionalities Are Working Wait For Updates.");
 var htmlEditor = ace.edit("htmlEditor");
 htmlEditor.getSession().setMode("ace/mode/html");
-htmlEditor = ace.edit("htmlEditor");
 htmlEditor.setTheme("ace/theme/monokai");
 htmlEditor.getSession().setMode("ace/mode/html");
 htmlEditor.getSession().setValue(`<!DOCTYPE html>
@@ -146,5 +145,42 @@ function changeTheme(){
     jsEditor.setTheme(`${themes[i++]}`);
     if(i == n)
         i = 0;
-    
 }
+
+const tags = document.querySelectorAll('.dropdown-content a');
+tags.forEach(tag => {
+    tag.addEventListener('click', function(){
+        htmlEditor.focus();
+        var element;    
+        var pos;
+        switch(tag.textContent)
+        {
+            case '<div> </div>':
+                element= '<div></div>';
+                pos = -6;
+                break;
+            case '<p> </p>':
+                element= '<p></p>';
+                pos = -4;
+                break;
+            case '<a> </a>':
+                element= '<a></a>';
+                pos = -4;
+                break;
+            case '<h1> </h1>':
+                element= '<h1></h1>';
+                pos = -5;
+                break;
+            case '<button> </button>':
+                element= '<button></button>';
+                pos = -9;
+                break;
+        }
+        var cursor = htmlEditor.getCursorPosition();
+        htmlEditor.session.insert(cursor, element);
+        htmlEditor.selection.moveCursorBy(0 , pos);
+        htmlEditor.selection.clearSelection();
+        htmlEditor.focus();
+        // updateoutput();
+    });
+});
