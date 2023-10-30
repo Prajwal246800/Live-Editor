@@ -62,10 +62,12 @@ var jsEdit = document.getElementById("jsEditor");
 const indexEditor = document.querySelector("#indexEditor");
 const styleEditor = document.querySelector("#styleEditor");
 const scriptEditor = document.querySelector("#scriptEditor");
+const suggestions = document.querySelector("#suggestions");
 indexEditor.addEventListener("click", function(){
     htmlEdit.style.display = "block";
     cssEdit.style.display = "none";
     jsEdit.style.display = "none";
+    suggestions.style.display = "block";
     indexEditor.classList.add("active");
     if (scriptEditor.classList.contains("active")) {
         scriptEditor.classList.remove("active");
@@ -78,6 +80,7 @@ styleEditor.addEventListener("click", function(){
     htmlEdit.style.display = "none";
     cssEdit.style.display = "block";
     jsEdit.style.display = "none";
+    suggestions.style.display = "none";
     styleEditor.classList.add("active");
     if (scriptEditor.classList.contains("active")) {
         scriptEditor.classList.remove("active");
@@ -90,6 +93,7 @@ document.querySelector("#scriptEditor").addEventListener("click", function(){
     htmlEdit.style.display = "none";
     cssEdit.style.display = "none";
     jsEdit.style.display = "block";
+    suggestions.style.display = "none";
     scriptEditor.classList.add("active");
     if (indexEditor.classList.contains("active")) {
         indexEditor.classList.remove("active");
@@ -155,25 +159,61 @@ tags.forEach(tag => {
         var pos;
         switch(tag.textContent)
         {
-            case '<div> </div>':
+            case 'div':
                 element= '<div></div>';
                 pos = -6;
                 break;
-            case '<p> </p>':
+            case 'p':
                 element= '<p></p>';
                 pos = -4;
                 break;
-            case '<a> </a>':
+            case 'a':
                 element= '<a></a>';
                 pos = -4;
                 break;
-            case '<h1> </h1>':
+            case 'h1':
                 element= '<h1></h1>';
                 pos = -5;
                 break;
-            case '<button> </button>':
+            case 'h2':
+                element= '<h2></h2>';
+                pos = -5;
+                break;
+            case 'h3':
+                element= '<h3></h3>';
+                pos = -5;
+                break;
+            case 'h4':
+                element= '<h4></h4>';
+                pos = -5;
+                break;
+            case 'h5':
+                element= '<h5></h5>';
+                pos = -5;
+                break;
+            case 'h6':
+                element= '<h6></h6>';
+                pos = -5;
+                break;
+            case 'button':
                 element= '<button></button>';
                 pos = -9;
+                break;
+            case 'span':
+                element= '<span></span>';
+                pos = -7;
+                break;
+            case 'ul':
+                element= '<ul></ul>';
+                pos = -5;
+                break;
+            case 'li':
+                element= '<li></li>';
+                pos = -5;
+                break;
+            case 'ol':
+                element= '<ol></ol>';
+                pos = -5;
                 break;
         }
         var cursor = htmlEditor.getCursorPosition();
@@ -181,6 +221,5 @@ tags.forEach(tag => {
         htmlEditor.selection.moveCursorBy(0 , pos);
         htmlEditor.selection.clearSelection();
         htmlEditor.focus();
-        // updateoutput();
     });
 });
