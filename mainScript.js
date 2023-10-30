@@ -160,61 +160,37 @@ tags.forEach(tag => {
         switch(tag.textContent)
         {
             case 'div':
-                element= '<div></div>';
-                pos = -6;
-                break;
+                element= '<div></div>'; pos = -6; break;
             case 'p':
-                element= '<p></p>';
-                pos = -4;
-                break;
+                element= '<p></p>'; pos = -4; break;
             case 'a':
-                element= '<a></a>';
-                pos = -4;
-                break;
+                element= '<a></a>'; pos = -4; break;
             case 'h1':
-                element= '<h1></h1>';
-                pos = -5;
-                break;
+                element= '<h1></h1>'; pos = -5; break;
             case 'h2':
-                element= '<h2></h2>';
-                pos = -5;
-                break;
+                element= '<h2></h2>'; pos = -5; break;
             case 'h3':
-                element= '<h3></h3>';
-                pos = -5;
-                break;
+                element= '<h3></h3>'; pos = -5; break;
             case 'h4':
-                element= '<h4></h4>';
-                pos = -5;
-                break;
+                element= '<h4></h4>'; pos = -5; break;
             case 'h5':
-                element= '<h5></h5>';
-                pos = -5;
-                break;
+                element= '<h5></h5>'; pos = -5; break;
             case 'h6':
-                element= '<h6></h6>';
-                pos = -5;
-                break;
+                element= '<h6></h6>'; pos = -5; break;
             case 'button':
-                element= '<button></button>';
-                pos = -9;
-                break;
+                element= '<button></button>'; pos = -9; break;
+            case 'input':
+                element= '<input></input>'; pos = -8; break;
             case 'span':
-                element= '<span></span>';
-                pos = -7;
-                break;
+                element= '<span></span>'; pos = -7; break;
             case 'ul':
-                element= '<ul></ul>';
-                pos = -5;
-                break;
+                element= '<ul></ul>'; pos = -5; break;
             case 'li':
-                element= '<li></li>';
-                pos = -5;
-                break;
+                element= '<li></li>'; pos = -5; break;
             case 'ol':
-                element= '<ol></ol>';
-                pos = -5;
-                break;
+                element= '<ol></ol>'; pos = -5; break;
+            case 'img':
+                element= '<img src="Your-Image-Source" alt="Alternative-Text">'; pos = 0; break;
         }
         var cursor = htmlEditor.getCursorPosition();
         htmlEditor.session.insert(cursor, element);
