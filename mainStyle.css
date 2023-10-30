@@ -109,6 +109,9 @@ nav ul li a:hover , .menu button:hover{
     .profile img{
         width: 20%;
     }
+    #suggestions{
+        display: none;
+    }
 }
 @media(max-width:858px){
     .logo{
@@ -172,6 +175,37 @@ nav ul li a:hover , .menu button:hover{
         font-size: 10px;
         cursor: pointer;
     }
+    
+
+    #suggestions{
+        margin-left: auto;
+        margin-right: 5%;
+        position: relative;
+    }
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        left: -40%;
+        top: 100%;
+        right: -40%;
+        background-color: #211e1e;
+        z-index: 1;
+        border-radius: 10px;
+    }
+    .dropdown-content a {
+        padding: 8px 12px;
+        display: block;
+    }
+    .dropdown-content a:hover {
+        background-color: #1d2226;
+        border-radius: 10px;
+        color: white;
+    }
+    #suggestions:hover .dropdown-content{
+        display: block;
+    }
+
+
     .editorContainer , .output{
         height: 50%;
     }
