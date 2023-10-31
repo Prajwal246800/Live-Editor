@@ -1,31 +1,24 @@
 *{
-    padding: 0;
-    margin: 0;
-    text-decoration: none;
-    list-style: none;
+    padding: 0; margin: 0;
+    text-decoration: none; list-style: none;
     box-sizing: border-box;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
 }
 nav{
     background-color: #222;
-    height: 80px;
-    width: 100%;
+    height: 80px; width: 100%;
 }
 .logo{
     color: white;
-    font-size: 35px;
-    line-height: 80px;
-    padding: 0 100px;
-    font-weight: bold;
+    font-size: 35px; font-weight: bold;
+    line-height: 80px; padding: 0 100px;
 }
 nav ul{
-    float: right;
-    margin-right: 20px;
+    float: right; margin-right: 20px;
 }
 nav ul li{
     display: inline-block;
-    line-height: 80px;
-    margin: 0 5px;
+    line-height: 80px; margin: 0 5px;
 }
 nav ul li a{
     color: white;
@@ -37,22 +30,17 @@ nav ul li a{
     font-size: 30px;
     color: white;
     float: right;
-    line-height: 80px;
-    margin-right: 40px;
+    line-height: 80px; margin-right: 40px;
     cursor: pointer;
 }
 #check{
     display: none;
 }
 main{
-    width: 100%;
-    height: 100vh;
+    width: 100%; height: 100vh;
     display: flex;
 }
-.ace_mobile-button{
-    display: none;
-}
-.cssEditor,.jsEditor{
+.ace_mobile-button, .cssEditor,.jsEditor{
     display: none;
 }
 nav ul li a:hover , .menu button:hover{
@@ -60,18 +48,16 @@ nav ul li a:hover , .menu button:hover{
 }
 .menu button:hover, .menu .active{
     transition-duration: 0.5s;
-    background-color: rgb(98, 98, 98);
-    color: black;
+    background-color: rgb(98, 98, 98); color: black;
 }
 @media(min-width : 858px){
     .logo{
-        font-size: 30px;
-        padding-left: 50px;
+        font-size: 30px; padding-left: 50px;
     }
     nav ul li a{
         font-size: 16px;
     }
-    .checkbtn{
+    .checkbtn, #suggestions{
         display: none;
     }
     a.active , a:hover{
@@ -82,26 +68,20 @@ nav ul li a:hover , .menu button:hover{
         flex-direction: row;
     }
     .menu{
-        width: 200px;
-        height: 100%;
+        width: 200px; height: 100%;
         background-color: #14161a;
-        display: flex;
-        flex-direction: column;
+        display: flex; flex-direction: column;
     }
     .menu button{
-        padding: 10px 0px;
-        margin: 10px 10px;
-        background-color: transparent;
-        border: 1px solid white;
-        border-radius: 5px ;
-        color: white;
+        padding: 10px 0px; margin: 10px 10px;
+        background-color: transparent; color: white;
+        border: 1px solid white; border-radius: 5px ;
     }
     .editorContainer{
         width: 50%;
     }
     .editor,.htmlEditor,.cssEditor,.jsEditor{
-        width: 100%;
-        height: 100%;
+        width: 100%; height: 100%;
     }
     .output{
         width: 50%;
@@ -109,19 +89,14 @@ nav ul li a:hover , .menu button:hover{
     .profile img{
         width: 20%;
     }
-    #suggestions{
-        display: none;
-    }
 }
 @media(max-width:858px){
     .logo{
         font-size: 20px;
-        padding: 0px 50px;
-        line-height: 50px;
+        padding: 0px 50px; line-height: 50px;
     }
     nav{
-        position: sticky;
-        top: 0px;
+        position: sticky; top: 0px;
         height: 50px;
         z-index: 1;
     }
@@ -130,26 +105,21 @@ nav ul li a:hover , .menu button:hover{
         line-height: 50px;
     }
     ul{
-        position: fixed;
-        width: 100%;
-        height: 100vh;
+        position: fixed; top: 50px; left: -100%;
+        width: 100%; height: 100vh;
         background-color: #2c3e50;
-        top: 50px;
-        left: -100%;
         text-align: center;
         transition: all 0.5s;
     }
     nav ul li {
         display: block;
-        margin: 50px 0px;
-        line-height: 30px;
+        margin: 50px 0px; line-height: 30px;
     }
     nav ul li a{
         font-size: 20px;
     }
     a.active , a:hover{
-        background-color: none;
-        color: #0082e6;
+        background-color: none; color: #0082e6;
     }
     #check:checked ~ ul{
         left: 0;
@@ -158,36 +128,25 @@ nav ul li a:hover , .menu button:hover{
         flex-direction: column;
     }
     .menu{
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        height: 40px;
-        background-color: #14161a;
+        display: flex; flex-direction: row;
+        width: 100%; height: 40px;
         padding:5px;
+        background-color: #14161a;
     }
     .menu button{
-        padding: 0px 10px 0px 10px;
-        margin: 1px 2px;
-        background-color: transparent;
-        border: 1px solid white;
-        border-radius: 5px;
-        color: white;
+        padding: 0px 10px 0px 10px; margin: 1px 2px;
+        background-color: transparent; color: white;
+        border: 1px solid white; border-radius: 5px;
         font-size: 10px;
         cursor: pointer;
     }
-    
-
     #suggestions{
-        margin-left: auto;
-        margin-right: 5%;
+        margin-left: auto; margin-right: 5%;
         position: relative;
     }
     .dropdown-content {
         display: none;
-        position: absolute;
-        left: -40%;
-        top: 100%;
-        right: -40%;
+        position: absolute; left: -40%; top: 100%; right: -40%;
         background-color: #211e1e;
         z-index: 1;
         border-radius: 10px;
@@ -195,23 +154,20 @@ nav ul li a:hover , .menu button:hover{
     .dropdown-content a {
         padding: 8px 12px;
         display: block;
+        color: azure;
     }
     .dropdown-content a:hover {
-        background-color: #1d2226;
+        background-color: #1d2226; color: white;
         border-radius: 10px;
-        color: white;
     }
     #suggestions:hover .dropdown-content{
         display: block;
     }
-
-
     .editorContainer , .output{
         height: 50%;
     }
     .editor,.htmlEditor,.cssEditor,.jsEditor{
-        height: 100%;
-        width: 100%;
+        height: 100%; width: 100%;
     }
     .ace_gutter , .ace_scrollbar-inner{
         z-index: 0;
@@ -221,10 +177,7 @@ nav ul li a:hover , .menu button:hover{
     }
 }
 .profile{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
 }
 .profile img{
     border-radius: 50%;

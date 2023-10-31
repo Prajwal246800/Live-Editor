@@ -1,4 +1,7 @@
 alert("Website Is Still Being Built Not All Functionalities Are Working Wait For Updates.");
+
+
+//Create 3 Editors For Typing HTML , CSS and JavaScript Code...
 var htmlEditor = ace.edit("htmlEditor");
 htmlEditor.getSession().setMode("ace/mode/html");
 htmlEditor.setTheme("ace/theme/monokai");
@@ -24,6 +27,8 @@ jsEditor.getSession().setMode("ace/mode/javascript");
 jsEditor.setTheme("ace/theme/monokai");
 var output = document.getElementById("output")
 
+
+//To Produce Live Output Of The Written Code...
 function updateoutput(){
     var htmlCode = htmlEditor.getValue();
     var cssCode = cssEditor.getValue();
@@ -42,20 +47,26 @@ htmlEditor.getSession().on('change', updateoutput);
 cssEditor.getSession().on('change', updateoutput);
 jsEditor.getSession().on('change', updateoutput);
 
+
+//To Prevent The Horizontal Scrollbar Displaying On The Menu Bar...
 document.getElementById("check").addEventListener("click",function(){
     var ace_scrollbar = document.querySelectorAll(".ace_scrollbar-inner");
     console.log(ace_scrollbar)
     if(ace_scrollbar[1].style.display == "none"){
+        clearTimeout();
         setTimeout(()=>{
             ace_scrollbar[1].style.display = "block";
         },500);
     }
     else
     {
+        clearTimeout();
         ace_scrollbar[1].style.display = "none";
     }
 });
 
+
+//Toggle Between Editors...
 var htmlEdit = document.getElementById("htmlEditor");
 var cssEdit = document.getElementById("cssEditor");
 var jsEdit = document.getElementById("jsEditor");
@@ -67,7 +78,8 @@ indexEditor.addEventListener("click", function(){
     htmlEdit.style.display = "block";
     cssEdit.style.display = "none";
     jsEdit.style.display = "none";
-    suggestions.style.display = "block";
+    if(suggestions.style.display == "block")
+        suggestions.style.display = "block";
     indexEditor.classList.add("active");
     if (scriptEditor.classList.contains("active")) {
         scriptEditor.classList.remove("active");
@@ -103,6 +115,8 @@ document.querySelector("#scriptEditor").addEventListener("click", function(){
     }
 })
 
+
+//Change Theme Of THe Editor...
 var themes = [
     "ace/theme/ambiance",
     "ace/theme/chaos",
@@ -151,6 +165,8 @@ function changeTheme(){
         i = 0;
 }
 
+
+//Add Tag Option For Mobile Users For Faster Typing...
 const tags = document.querySelectorAll('.dropdown-content a');
 tags.forEach(tag => {
     tag.addEventListener('click', function(){
