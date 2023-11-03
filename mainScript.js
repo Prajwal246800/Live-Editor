@@ -73,13 +73,13 @@ var jsEdit = document.getElementById("jsEditor");
 const indexEditor = document.querySelector("#indexEditor");
 const styleEditor = document.querySelector("#styleEditor");
 const scriptEditor = document.querySelector("#scriptEditor");
-const suggestions = document.querySelector("#suggestions");
+const tagSuggestions = document.querySelector("#tagSuggestions");
 indexEditor.addEventListener("click", function(){
     htmlEdit.style.display = "block";
     cssEdit.style.display = "none";
     jsEdit.style.display = "none";
-    if(suggestions.style.display == "block")
-        suggestions.style.display = "block";
+    if(tagSuggestions.style.display == "block")
+        tagSuggestions.style.display = "block";
     indexEditor.classList.add("active");
     if (scriptEditor.classList.contains("active")) {
         scriptEditor.classList.remove("active");
@@ -92,7 +92,7 @@ styleEditor.addEventListener("click", function(){
     htmlEdit.style.display = "none";
     cssEdit.style.display = "block";
     jsEdit.style.display = "none";
-    suggestions.style.display = "none";
+    tagSuggestions.style.display = "none";
     styleEditor.classList.add("active");
     if (scriptEditor.classList.contains("active")) {
         scriptEditor.classList.remove("active");
@@ -105,7 +105,7 @@ document.querySelector("#scriptEditor").addEventListener("click", function(){
     htmlEdit.style.display = "none";
     cssEdit.style.display = "none";
     jsEdit.style.display = "block";
-    suggestions.style.display = "none";
+    tagSuggestions.style.display = "none";
     scriptEditor.classList.add("active");
     if (indexEditor.classList.contains("active")) {
         indexEditor.classList.remove("active");
@@ -207,6 +207,9 @@ tags.forEach(tag => {
                 element= '<ol></ol>'; pos = -5; break;
             case 'img':
                 element= '<img src="Your-Image-Source" alt="Alternative-Text">'; pos = 0; break;
+
+            //Atttributes
+            case 'id': element= "id = ''"; pos = -1; break;
         }
         var cursor = htmlEditor.getCursorPosition();
         htmlEditor.session.insert(cursor, element);

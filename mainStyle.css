@@ -57,7 +57,7 @@ nav ul li a:hover , .menu button:hover{
     nav ul li a{
         font-size: 16px;
     }
-    .checkbtn, #suggestions{
+    .checkbtn, #tagSuggestions{
         display: none;
     }
     a.active , a:hover{
@@ -140,7 +140,7 @@ nav ul li a:hover , .menu button:hover{
         font-size: 10px;
         cursor: pointer;
     }
-    #suggestions{
+    #tagSuggestions, #attributeSuggestions{
         margin-left: auto; margin-right: 5%;
         position: relative;
     }
@@ -160,9 +160,21 @@ nav ul li a:hover , .menu button:hover{
         background-color: #1d2226; color: white;
         border-radius: 10px;
     }
-    #suggestions:hover .dropdown-content{
+    #tagSuggestions:hover .dropdown-content{
         display: block;
     }
+
+
+    #attributeSuggestions{
+        margin-left: auto;
+        margin-right: 5%;
+        position: relative;
+    }
+    #attributeSuggestions:hover .dropdown-content{
+        display: block;
+    }
+
+
     .editorContainer , .output{
         height: 50%;
     }
