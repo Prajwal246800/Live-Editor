@@ -57,7 +57,7 @@ nav ul li a:hover , .menu button:hover{
     nav ul li a{
         font-size: 16px;
     }
-    .checkbtn, #tagSuggestions{
+    .checkbtn, #tagSuggestions, #attributeSuggestions{
         display: none;
     }
     a.active , a:hover{

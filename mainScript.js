@@ -74,12 +74,16 @@ const indexEditor = document.querySelector("#indexEditor");
 const styleEditor = document.querySelector("#styleEditor");
 const scriptEditor = document.querySelector("#scriptEditor");
 const tagSuggestions = document.querySelector("#tagSuggestions");
+const attributeSuggestions = document.querySelector("#attributeSuggestions");
 indexEditor.addEventListener("click", function(){
     htmlEdit.style.display = "block";
     cssEdit.style.display = "none";
     jsEdit.style.display = "none";
     if(tagSuggestions.style.display == "block")
+    {
         tagSuggestions.style.display = "block";
+        attributeSuggestions.style.display = "block";
+    }
     indexEditor.classList.add("active");
     if (scriptEditor.classList.contains("active")) {
         scriptEditor.classList.remove("active");
@@ -93,6 +97,7 @@ styleEditor.addEventListener("click", function(){
     cssEdit.style.display = "block";
     jsEdit.style.display = "none";
     tagSuggestions.style.display = "none";
+    attributeSuggestions.style.display = "none";
     styleEditor.classList.add("active");
     if (scriptEditor.classList.contains("active")) {
         scriptEditor.classList.remove("active");
@@ -106,6 +111,7 @@ document.querySelector("#scriptEditor").addEventListener("click", function(){
     cssEdit.style.display = "none";
     jsEdit.style.display = "block";
     tagSuggestions.style.display = "none";
+    attributeSuggestions.style.display = "none";    
     scriptEditor.classList.add("active");
     if (indexEditor.classList.contains("active")) {
         indexEditor.classList.remove("active");
@@ -175,41 +181,30 @@ tags.forEach(tag => {
         var pos;
         switch(tag.textContent)
         {
-            case 'div':
-                element= '<div></div>'; pos = -6; break;
-            case 'p':
-                element= '<p></p>'; pos = -4; break;
-            case 'a':
-                element= '<a></a>'; pos = -4; break;
-            case 'h1':
-                element= '<h1></h1>'; pos = -5; break;
-            case 'h2':
-                element= '<h2></h2>'; pos = -5; break;
-            case 'h3':
-                element= '<h3></h3>'; pos = -5; break;
-            case 'h4':
-                element= '<h4></h4>'; pos = -5; break;
-            case 'h5':
-                element= '<h5></h5>'; pos = -5; break;
-            case 'h6':
-                element= '<h6></h6>'; pos = -5; break;
-            case 'button':
-                element= '<button></button>'; pos = -9; break;
-            case 'input':
-                element= '<input></input>'; pos = -8; break;
-            case 'span':
-                element= '<span></span>'; pos = -7; break;
-            case 'ul':
-                element= '<ul></ul>'; pos = -5; break;
-            case 'li':
-                element= '<li></li>'; pos = -5; break;
-            case 'ol':
-                element= '<ol></ol>'; pos = -5; break;
-            case 'img':
-                element= '<img src="Your-Image-Source" alt="Alternative-Text">'; pos = 0; break;
+            case 'div': element= '<div></div>'; pos = -6; break;
+            case 'p': element= '<p></p>'; pos = -4; break;
+            case 'a': element= '<a></a>'; pos = -4; break;
+            case 'h1': element= '<h1></h1>'; pos = -5; break;
+            case 'h2': element= '<h2></h2>'; pos = -5; break;
+            case 'h3': element= '<h3></h3>'; pos = -5; break;
+            case 'h4': element= '<h4></h4>'; pos = -5; break;
+            case 'h5': element= '<h5></h5>'; pos = -5; break;
+            case 'h6': element= '<h6></h6>'; pos = -5; break;
+            case 'button': element= '<button></button>'; pos = -9; break;
+            case 'input': element= '<input></input>'; pos = -8; break;
+            case 'span': element= '<span></span>'; pos = -7; break;
+            case 'ul': element= '<ul></ul>'; pos = -5; break;
+            case 'li': element= '<li></li>'; pos = -5; break;
+            case 'ol': element= '<ol></ol>'; pos = -5; break;
+            case 'img': element= '<img src="Your-Image-Source" alt="Alternative-Text">'; pos = 0; break;
 
             //Atttributes
             case 'id': element= "id = ''"; pos = -1; break;
+            case 'class': element = "class = ''"; pos =-1; break;
+            case 'name': element= "name = ''"; pos = -1; break;
+            case 'value': element= "value = ''"; pos = -1; break;
+            case 'type': element= "type = ''"; pos = -1; break;
+            case 'for' : element= "for = ''"; pos = -1; break;
         }
         var cursor = htmlEditor.getCursorPosition();
         htmlEditor.session.insert(cursor, element);
