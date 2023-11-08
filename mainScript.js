@@ -167,6 +167,14 @@ function changeTheme(){
     htmlEditor.setTheme(`${themes[i]}`);
     cssEditor.setTheme(`${themes[i]}`);
     jsEditor.setTheme(`${themes[i++]}`);
+    var ul = document.getElementById("ulList");
+    clearTimeout();
+    setTimeout(function(){
+        ul.style.backgroundColor = "transparent";
+    },1)
+    setTimeout(function(){
+        ul.style.backgroundColor = "#2c3e50";
+    },2000)
     if(i == n)
         i = 0;
 }
@@ -197,7 +205,6 @@ tags.forEach(tag => {
             case 'li': element= '<li></li>'; pos = -5; break;
             case 'ol': element= '<ol></ol>'; pos = -5; break;
             case 'img': element= '<img src="Your-Image-Source" alt="Alternative-Text">'; pos = 0; break;
-
             //Atttributes
             case 'id': element= "id = ''"; pos = -1; break;
             case 'class': element = "class = ''"; pos =-1; break;

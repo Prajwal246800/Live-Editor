@@ -163,8 +163,6 @@ nav ul li a:hover , .menu button:hover{
     #tagSuggestions:hover .dropdown-content{
         display: block;
     }
-
-
     #attributeSuggestions{
         margin-left: auto;
         margin-right: 5%;
@@ -173,8 +171,6 @@ nav ul li a:hover , .menu button:hover{
     #attributeSuggestions:hover .dropdown-content{
         display: block;
     }
-
-
     .editorContainer , .output{
         height: 50%;
     }
