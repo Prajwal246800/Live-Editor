@@ -1,4 +1,4 @@
-alert("Website Is Still Being Built Not All Functionalities Are Working Wait For Updates.");
+// alert("Website Is Still Being Built Not All Functionalities Are Working Wait For Updates.");
 
 
 //Create 3 Editors For Typing HTML , CSS and JavaScript Code...
