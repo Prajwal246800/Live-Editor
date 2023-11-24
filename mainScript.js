@@ -15,7 +15,7 @@ htmlEditor.getSession().setValue(`<!DOCTYPE html>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+
     <script src="script.js"></script>
 </body>
 </html>`);
@@ -66,7 +66,7 @@ document.getElementById("check").addEventListener("click",function(){
 });
 
 
-//Toggle Between Editors...
+//Toggle Between Editors...   
 var htmlEdit = document.getElementById("htmlEditor");
 var cssEdit = document.getElementById("cssEditor");
 var jsEdit = document.getElementById("jsEditor");
@@ -120,7 +120,6 @@ document.querySelector("#scriptEditor").addEventListener("click", function(){
         styleEditor.classList.remove("active");
     }
 })
-
 
 //Change Theme Of THe Editor...
 var themes = [
