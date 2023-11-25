@@ -93,3 +93,24 @@ h2{
 .signup-link a:hover{
     text-decoration: underline;
 }
+.container span {
+    position: absolute;
+    left: 0;
+    width: 32px;
+    height: 6px;
+    background: #2c4766;
+    border-radius: 8px;
+    transform-origin: 128px;
+    transform: scale(2.2) rotate(calc(var(--i) * (360deg / 50)));
+    animation: animateBlink 3s linear infinite;
+    animation-delay: calc(var(--i) * (3s / 50));
+    z-index: -1;
+}
+@keyframes animateBlink {
+    0% {
+    background: #0ef;
+    }
+    25% {
+    background: #2c4766;
+    }
+}
