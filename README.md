@@ -10,6 +10,7 @@ This project is a web-based compiler for HTML, CSS, and JavaScript, providing a 
 ### 4. Performance Optimization: Ensuring the compiler runs smoothly without lags.
 ### 5. Error Detection and Notifications: Detecting syntax errors or issues in the code and providing notifications or hints to help users debug effectively.
 ### 6. Multiple File Support: Allowing users to work with different HTML, CSS, and JavaScript files simultaneously within the compiler for creating more complex web projects.
+### 7. Responsive Design: It Is Also Made Responsive So That Mobile Users Can Also Code Easily
 
 ## You can access a live demo of this compiler at heehello.netlify.app.
 
