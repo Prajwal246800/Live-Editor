@@ -1,0 +1,27 @@
+.profile{
+    display: flex; flex-direction: row; justify-content: center; align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.profile .imgContainer , .profile .detailsContainer{
+    width: 50%;
+    height: 100%;
+    border-radius: 50%;
+}
+.profile label{
+    padding: 10px 10px;
+}
+
+
+/* @media(min-width : 858px)
+{
+    .profile img{
+        width: 20%;
+    }
+}
+@media(max-width:858px)
+{
+    .profile img{
+        width: 50%;
+    }
+} */

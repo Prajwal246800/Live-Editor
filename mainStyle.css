@@ -86,9 +86,6 @@ nav ul li a:hover , .menu button:hover{
     .output{
         width: 50%;
     }
-    .profile img{
-        width: 20%;
-    }
 }
 @media(max-width:858px){
     .logo{
@@ -180,16 +177,4 @@ nav ul li a:hover , .menu button:hover{
     .ace_gutter , .ace_scrollbar-inner{
         z-index: 0;
     }
-    .profile img{
-        width: 50%;
-    }
-}
-.profile{
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-}
-.profile img{
-    border-radius: 50%;
-}
-.profile label{
-    padding: 10px 10px;
 }
