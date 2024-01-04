@@ -31,7 +31,29 @@
         </div>
         <span style="--i:0;"></span><span style="--i:1;"></span><span style="--i:2;"></span><span style="--i:3;"></span><span style="--i:4;"></span><span style="--i:5;"></span><span style="--i:6;"></span><span style="--i:7;"></span><span style="--i:8;"></span><span style="--i:9;"></span><span style="--i:10;"></span><span style="--i:11;"></span><span style="--i:12;"></span><span style="--i:13;"></span><span style="--i:14;"></span><span style="--i:15;"></span><span style="--i:16;"></span><span style="--i:17;"></span><span style="--i:18;"></span><span style="--i:19;"></span><span style="--i:20;"></span><span style="--i:21;"></span><span style="--i:22;"></span><span style="--i:23;"></span><span style="--i:24;"></span><span style="--i:25;"></span><span style="--i:26;"></span><span style="--i:27;"></span><span style="--i:28;"></span><span style="--i:29;"></span><span style="--i:30;"></span><span style="--i:31;"></span><span style="--i:32;"></span><span style="--i:33;"></span><span style="--i:34;"></span><span style="--i:35;"></span><span style="--i:36;"></span><span style="--i:37;"></span><span style="--i:38;"></span><span style="--i:39;"></span><span style="--i:40;"></span><span style="--i:41;"></span><span style="--i:42;"></span><span style="--i:43;"></span><span style="--i:44;"></span><span style="--i:45;"></span><span style="--i:46;"></span><span style="--i:47;"></span><span style="--i:48;"></span><span style="--i:49;"></span>
     </div>
+
+    <div id="myModal" class="modal">
+            <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>
+                Project Update Notice:<br><br>
+                Dear valued users,<br><br>
+                We are diligently working on enhancing this project to provide you with an even better experience...
+            </p>
+            <p>
+                Login Information:<br><br>
+                Please Use username: 'user' and password: 'user@123' to login. Register is Not Working Yet, I Will Make It Working In Further Updates.....
+            </p>
+            <p>
+                For any suggestions or inquiries, please feel free to reach out to us at your convenience via email at:
+                <a href="mailto:ankithgowda24680@gmail.com?subject=Project%20Feedback&body=Hello%20Ankith,%20I%20Have%20One%20Suggestion%20%0D%0A%0D%0A">ankithgowda24680@gmail.com</a>.
+            </p>
+            </div>
+        </div>
+
     <script type="text/javascript">
+        // alert("Project Update Notice:\n\nDear valued users,\n\nWe are diligently working on enhancing this project to provide you with an even better experience. Please bear with us as we strive to implement updates that will further elevate its functionality and usability. Your patience during this phase is greatly appreciated.\n\nFor any suggestions or inquiries, please feel free to reach out to us at your convenience via email at: ankithgowda24680@gmail.com.\n\nLogin Information:\n- Username: 'user'\n- Password: 'user@123'\n\nPlease note that the registration feature is currently under development and is not yet functional. Rest assured, we are committed to making it available in upcoming updates.\n\nThank you for your understanding and support.\n\nSincerely,\nAnkith Gowda B S");
+        // alert("Login Information:\n\nPlease Use username: 'user' and password: 'user@123' to login.\nRegister is Not Working Yet, I Will Make It Working In Further Updates.....");
         const button = document.querySelector("#btn");
         button.addEventListener("click",function(event){
             if(document.querySelector("#pass").value == "user@123" && document.querySelector("#uname").value == "user")
@@ -63,6 +85,23 @@
             });
         }
         changelabel();
+        var modal = document.getElementById("myModal");
+        var span = document.getElementsByClassName("close")[0];
+        window.onload = function()
+        {
+            modal.style.display = "block";
+        };
+        span.onclick = function()
+        {
+            modal.style.display = "none";
+        };
+        window.onclick = function(event)
+        {
+            if (event.target == modal)
+            {
+                modal.style.display = "none";
+            }
+        };
     </script>
 </body>
 </html>
