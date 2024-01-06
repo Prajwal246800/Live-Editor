@@ -20,7 +20,7 @@ View Output: Instantly view the output in the live preview pane.
 
 ## Installation
 Clone the repository:
-``` git clone https://github.com/Prajwal246800/WT-SEM3-miniProject.git ```   
+``` git clone https://github.com/Prajwal246800/Live-Editor.git ```   
 
 Open the index.html file in your browser.
 
