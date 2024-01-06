@@ -1,4 +1,4 @@
-# WT-SEM3-miniProject
+# Live-Editor
 # Online HTML, CSS, and JavaScript Compiler with Live Output
 
 This project is a web-based compiler for HTML, CSS, and JavaScript, providing a live output feature. It allows users to write and test code snippets in these languages directly within their browsers and instantly view the results.
