@@ -188,6 +188,9 @@ tags.forEach(tag => {
         var pos;
         switch(tag.textContent)
         {
+            default:
+                document.getElementById("tagSuggestions").click();
+                document.getElementById("attributeSuggestions").click();
             case 'div': element= '<div></div>'; pos = -6; break;
             case 'p': element= '<p></p>'; pos = -4; break;
             case 'a': element= '<a></a>'; pos = -4; break;
