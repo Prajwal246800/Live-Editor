@@ -1,6 +1,3 @@
-alert("Website Is Still Being Built Not All Functionalities Are Working Wait For Updates.");
-
-
 //Create 3 Editors For Typing HTML , CSS and JavaScript Code...
 var htmlEditor = ace.edit("htmlEditor");
 htmlEditor.getSession().setMode("ace/mode/html");
@@ -123,44 +120,30 @@ document.querySelector("#scriptEditor").addEventListener("click", function(){
 
 //Change Theme Of THe Editor...
 var themes = [
-    "ace/theme/ambiance",
-    "ace/theme/chaos",
-    "ace/theme/chrome",
-    "ace/theme/clouds",
+    "ace/theme/ambiance", 
+    "ace/theme/chaos", 
     "ace/theme/clouds_midnight",
     "ace/theme/cobalt",
-    "ace/theme/crimson_editor",
-    "ace/theme/dawn",
     "ace/theme/dracula",
-    "ace/theme/dreamweaver",
-    "ace/theme/eclipse",
-    "ace/theme/github",
     "ace/theme/gob",
     "ace/theme/gruvbox",
     "ace/theme/idle_fingers",
-    "ace/theme/iplastic",
-    "ace/theme/katzenmilch",
     "ace/theme/kr_theme",
-    "ace/theme/kuroir",
     "ace/theme/merbivore",
     "ace/theme/merbivore_soft",
     "ace/theme/monokai",
     "ace/theme/pastel_on_dark",
     "ace/theme/solarized_dark",
-    "ace/theme/solarized_light",
-    "ace/theme/sqlserver",
     "ace/theme/terminal",
-    "ace/theme/textmate",
-    "ace/theme/tomorrow",
     "ace/theme/tomorrow_night",
     "ace/theme/tomorrow_night_blue",
     "ace/theme/tomorrow_night_bright",
     "ace/theme/tomorrow_night_eighties",
     "ace/theme/twilight",
     "ace/theme/vibrant_ink",
-    "ace/theme/xcode"
+    "ace/theme/github"
 ];
-var n = 36 , i = 0;
+var n = 22 , i = 0;
 document.getElementById("changeTheme").addEventListener("click",changeTheme);
 function changeTheme(){
     htmlEditor.setTheme(`${themes[i]}`);
