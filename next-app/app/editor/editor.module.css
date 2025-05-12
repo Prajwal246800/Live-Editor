@@ -1,0 +1,299 @@
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #e2e8f0;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background: rgba(15, 23, 42, 0.95);
+  padding: 1.5rem 2rem 1.5rem 2rem;
+  box-shadow: 0 2px 12px 0 rgba(16, 30, 54, 0.12);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  border-bottom: 1px solid #1e293b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1300px;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 2px;
+}
+
+.navList {
+  display: flex;
+  list-style: none;
+  gap: 2.5rem;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.navList li {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.navList a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color 0.3s;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}
+
+.navList a:hover, .active {
+  color: #fff !important;
+  background: #3b82f6;
+}
+
+.themeButton {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: color 0.3s, background 0.3s;
+  outline: none;
+  display: inline;
+}
+
+.themeButton:hover, .themeButton:focus {
+  color: #fff !important;
+  background: #3b82f6;
+}
+
+.main {
+  flex: 1;
+  margin-top: 5.5rem;
+  padding: 2rem 1rem 2rem 1rem;
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - 5.5rem);
+  gap: 2rem;
+  justify-content: center;
+}
+
+.sidebar {
+  min-width: 180px;
+  max-width: 220px;
+  background: rgba(30, 41, 59, 0.95);
+  border-radius: 18px;
+  box-shadow: 0 4px 24px 0 rgba(16, 30, 54, 0.10);
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: stretch;
+  height: fit-content;
+  margin-top: 1rem;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.menuButton {
+  padding: 1rem 0;
+  background: #1e293b;
+  border: 1.5px solid rgba(59, 130, 246, 0.08);
+  border-radius: 12px;
+  color: #cbd5e1;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 1px 4px 0 rgba(16, 30, 54, 0.07);
+  outline: none;
+}
+
+.menuButton:hover {
+  background: #334155;
+  color: #fff;
+  border-color: #3b82f6;
+}
+
+.menuButton.active {
+  background: #2563eb;
+  color: #fff;
+  font-weight: bold;
+  border-color: #3b82f6;
+  box-shadow: 0 2px 8px 0 rgba(59,130,246,0.15);
+  z-index: 1;
+}
+
+.editorOutputWrapper {
+  display: flex;
+  flex: 1;
+  gap: 2rem;
+  min-width: 0;
+}
+
+.editorCard, .outputCard {
+  background: #1e253b;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px 0 rgba(16, 30, 54, 0.10);
+  border: 1.5px solid #232c41;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+}
+
+.editor {
+  flex: 1;
+  min-height: 0;
+  border-radius: 0 0 18px 18px;
+  overflow: hidden;
+  background: #181e2a;
+  border: none;
+}
+
+.editorHeader {
+  background: #232c41;
+  color: #8b5cf6;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-bottom: 1px solid #232c41;
+  letter-spacing: 1px;
+}
+
+.output {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border: none;
+  border-radius: 0 0 18px 18px;
+}
+
+.outputHeader {
+  background: #232c41;
+  color: #3b82f6;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-bottom: 1px solid #232c41;
+  letter-spacing: 1px;
+}
+
+/* Responsive Layout */
+@media (max-width: 1023px) {
+  .header {
+    padding: 0.7rem 0.5rem 0.7rem 0.5rem;
+    min-height: unset;
+    border-radius: 0;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    width: 100%;
+    max-width: 100vw;
+  }
+  .logo {
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    margin-bottom: 0.2rem;
+    text-align: center;
+  }
+  .navList {
+    gap: 0.5rem;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 0.2rem;
+  }
+  .navList a {
+    font-size: 1rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 6px;
+  }
+  .main {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.2rem 0.1rem;
+    height: auto;
+    min-height: 100vh;
+  }
+  .sidebar {
+    display: none;
+  }
+  .menu {
+    flex-direction: row;
+    gap: 0.2rem;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 0.2rem;
+  }
+  .menuButton {
+    flex: 1 1 0;
+    padding: 0.6rem 0.2rem;
+    font-size: 0.95rem;
+    border-radius: 6px;
+    min-width: 0;
+    text-align: center;
+  }
+  .editorOutputWrapper {
+    flex-direction: column;
+    gap: 0.4rem;
+    min-width: 0;
+    width: 100vw;
+    max-width: 100vw;
+  }
+  .editorCard, .outputCard {
+    border-radius: 6px;
+    min-height: 160px;
+    max-height: 40vh;
+    box-shadow: 0 1px 4px 0 rgba(16, 30, 54, 0.08);
+    width: 100vw;
+    max-width: 100vw;
+    margin: 0 auto;
+  }
+  .editorHeader, .outputHeader {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.95rem;
+    border-radius: 6px 6px 0 0;
+  }
+  .editor, .output {
+    border-radius: 0 0 6px 6px;
+    min-height: 120px;
+    max-height: 32vh;
+    height: 32vh;
+    width: 100vw;
+    max-width: 100vw;
+    overflow: auto;
+    display: block;
+  }
+} 
