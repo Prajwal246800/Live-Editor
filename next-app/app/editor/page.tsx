@@ -376,11 +376,13 @@ export default function Editor() {
                   {msg.role === 'ai' ? (
                     <ReactMarkdown
                       components={{
-                        code({node, inline, className, children, ...props}) {
-                          return inline ? (
-                            <code className={styles.inlineCode} {...props}>{children}</code>
-                          ) : (
+                        code({node, className, children, ...props}) {
+                          // If the parent is a 'pre', it's a code block; otherwise, it's inline code
+                          const isBlock = (node && typeof node === 'object' && 'parent' in node && (node as any).parent?.name === 'pre');
+                          return isBlock ? (
                             <pre className={styles.codeBlock}><code {...props}>{children}</code></pre>
+                          ) : (
+                            <code className={styles.inlineCode} {...props}>{children}</code>
                           );
                         }
                       }}
