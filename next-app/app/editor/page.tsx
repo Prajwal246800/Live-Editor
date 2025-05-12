@@ -87,7 +87,7 @@ const AceEditor = dynamic(
 
 // Gemini REST API call from frontend
 async function askGemini(question: string, html: string, css: string, js: string): Promise<string> {
-  const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY || 'AIzaSyBIU2k_40U1QLn7yWJ_2Sp44Ir9GuAPgEw';
+  const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY || '';
   if (!apiKey) return 'Gemini API key is not set.';
   const prompt = `User Question: ${question}\n\nHere is my code:\n\nHTML:\n${html}\n\nCSS:\n${css}\n\nJavaScript:\n${js}\n\nPlease answer in a way that is helpful for a beginner. Please keep your response short and concise. Please be very specific and to the point.`;
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
