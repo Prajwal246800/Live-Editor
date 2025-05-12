@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import styles from './editor.module.css';
+import ReactMarkdown from 'react-markdown';
 
 // Helper to detect mobile
 function useIsMobile() {
@@ -84,6 +85,31 @@ const AceEditor = dynamic(
   }
 );
 
+// Gemini REST API call from frontend
+async function askGemini(question: string, html: string, css: string, js: string): Promise<string> {
+  const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY || 'AIzaSyBIU2k_40U1QLn7yWJ_2Sp44Ir9GuAPgEw';
+  if (!apiKey) return 'Gemini API key is not set.';
+  const prompt = `User Question: ${question}\n\nHere is my code:\n\nHTML:\n${html}\n\nCSS:\n${css}\n\nJavaScript:\n${js}\n\nPlease answer in a way that is helpful for a beginner. Please keep your response short and concise. Please be very specific and to the point.`;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+  const body = {
+    contents: [{ parts: [{ text: prompt }] }]
+  };
+  try {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    const data = await res.json();
+    if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+      return data.candidates[0].content.parts[0].text;
+    }
+    return data.error?.message || 'No response from Gemini.';
+  } catch (e: any) {
+    return 'Error contacting Gemini: ' + (e?.message || e);
+  }
+}
+
 export default function Editor() {
   const [activeEditor, setActiveEditor] = useState('html');
   const [htmlCode, setHtmlCode] = useState(`<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>Live Editor</title>\n  </head>\n  <body>\n    <h1>Hello, World!</h1>\n    <p>Start editing to see some magic happen :)</p>\n  </body>\n</html>`);
@@ -95,6 +121,10 @@ export default function Editor() {
   const [editorTheme, setEditorTheme] = useState('monokai');
   const [themeIndex, setThemeIndex] = useState(0);
   const [error, setError] = useState<string | null>(null);
+  const [chatOpen, setChatOpen] = useState(false);
+  const [chatInput, setChatInput] = useState('');
+  const [chatLoading, setChatLoading] = useState(false);
+  const [chatMessages, setChatMessages] = useState<{role: 'user'|'ai', text: string}[]>([]);
 
   useEffect(() => {
     setIsMounted(true);
@@ -156,6 +186,21 @@ export default function Editor() {
     const nextIndex = (themeIndex + 1) % aceThemes.length;
     setThemeIndex(nextIndex);
     setEditorTheme(aceThemes[nextIndex].value);
+  };
+
+  const handleSendChat = async () => {
+    if (!chatInput.trim()) return;
+    const userMsg = chatInput.trim();
+    setChatMessages((msgs) => [...msgs, { role: 'user', text: userMsg }]);
+    setChatInput('');
+    setChatLoading(true);
+    try {
+      const aiResp = await askGemini(userMsg, htmlCode, cssCode, jsCode);
+      setChatMessages((msgs) => [...msgs, { role: 'ai', text: aiResp }]);
+    } catch (e) {
+      setChatMessages((msgs) => [...msgs, { role: 'ai', text: 'Sorry, there was an error contacting Gemini.' }]);
+    }
+    setChatLoading(false);
   };
 
   if (!isMounted) {
@@ -308,6 +353,64 @@ export default function Editor() {
           </section>
         </div>
       </main>
+
+      {/* Floating AI Chat Bot */}
+      <div className={styles.fabChatBot}>
+        {!chatOpen && (
+          <button className={styles.fabButton} onClick={() => setChatOpen(true)} title="Ask Adam AI">
+            <span role="img" aria-label="AI">🤖</span>
+          </button>
+        )}
+        {chatOpen && (
+          <div className={styles.chatWindow}>
+            <div className={styles.chatHeader}>
+              <span>Adam AI Assistant</span>
+              <button className={styles.closeChatBtn} onClick={() => setChatOpen(false)} title="Close">×</button>
+            </div>
+            <div className={styles.chatMessages}>
+              {chatMessages.length === 0 && (
+                <div className={styles.chatWelcome}>Ask Adam AI anything about your HTML, CSS, or JS code!</div>
+              )}
+              {chatMessages.map((msg, i) => (
+                <div key={i} className={msg.role === 'user' ? styles.userMsg : styles.aiMsg}>
+                  {msg.role === 'ai' ? (
+                    <ReactMarkdown
+                      components={{
+                        code({node, inline, className, children, ...props}) {
+                          return inline ? (
+                            <code className={styles.inlineCode} {...props}>{children}</code>
+                          ) : (
+                            <pre className={styles.codeBlock}><code {...props}>{children}</code></pre>
+                          );
+                        }
+                      }}
+                    >
+                      {msg.text}
+                    </ReactMarkdown>
+                  ) : (
+                    msg.text
+                  )}
+                </div>
+              ))}
+              {chatLoading && <div className={styles.aiMsg}>Adam AI is typing...</div>}
+            </div>
+            <div className={styles.chatInputRow}>
+              <input
+                className={styles.chatInput}
+                type="text"
+                placeholder="Ask Adam AI about your code..."
+                value={chatInput}
+                onChange={e => setChatInput(e.target.value)}
+                onKeyDown={e => { if (e.key === 'Enter') handleSendChat(); }}
+                disabled={chatLoading}
+              />
+              <button className={styles.sendBtn} onClick={handleSendChat} disabled={chatLoading || !chatInput.trim()}>
+                Send
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 } 
