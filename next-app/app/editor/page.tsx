@@ -94,6 +94,7 @@ export default function Editor() {
   const isMobile = useIsMobile();
   const [editorTheme, setEditorTheme] = useState('monokai');
   const [themeIndex, setThemeIndex] = useState(0);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     setIsMounted(true);
@@ -103,14 +104,17 @@ export default function Editor() {
     if (isMounted) {
       updateOutput();
     }
-  }, [htmlCode, cssCode, jsCode, isMounted]);
+    // eslint-disable-next-line
+  }, [htmlCode, cssCode, jsCode, isMounted, editorTheme]);
 
   const updateOutput = () => {
+    setError(null);
     if (outputRef.current) {
       const iframe = outputRef.current;
       const doc = iframe.contentDocument || iframe.contentWindow?.document;
       if (doc) {
         doc.open();
+        // Inject error handling for JS
         doc.write(`
           <!DOCTYPE html>
           <html>
@@ -119,7 +123,16 @@ export default function Editor() {
             </head>
             <body>
               ${htmlCode}
-              <script>${jsCode}</script>
+              <script>
+                window.onerror = function(msg, url, line, col, error) {
+                  window.parent.postMessage({ type: 'iframe-error', msg, url, line, col, error: error && error.stack }, '*');
+                };
+                try {
+                  ${jsCode}
+                } catch (e) {
+                  window.parent.postMessage({ type: 'iframe-error', msg: e.message, error: e.stack }, '*');
+                }
+              <\/script>
             </body>
           </html>
         `);
@@ -127,6 +140,17 @@ export default function Editor() {
       }
     }
   };
+
+  // Listen for errors from iframe
+  useEffect(() => {
+    function handleMsg(e: MessageEvent) {
+      if (e.data && e.data.type === 'iframe-error') {
+        setError(e.data.msg + (e.data.line ? ` (line ${e.data.line})` : ''));
+      }
+    }
+    window.addEventListener('message', handleMsg);
+    return () => window.removeEventListener('message', handleMsg);
+  }, []);
 
   const handleThemeChange = () => {
     const nextIndex = (themeIndex + 1) % aceThemes.length;
@@ -276,6 +300,11 @@ export default function Editor() {
               title="output"
               style={isMobile ? { minHeight: 120, height: '32vh', maxHeight: '32vh' } : {}}
             />
+            {error && (
+              <div className={styles.errorBox}>
+                <strong>Error:</strong> {error}
+              </div>
+            )}
           </section>
         </div>
       </main>

@@ -204,6 +204,26 @@
   letter-spacing: 1px;
 }
 
+.errorBox {
+  background: #fee2e2;
+  color: #991b1b;
+  border-left: 4px solid #ef4444;
+  padding: 0.75rem 1rem;
+  margin: 0.5rem 1rem 1rem 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px 0 rgba(239,68,68,0.07);
+  word-break: break-word;
+}
+
+@media (max-width: 768px) {
+  .errorBox {
+    font-size: 0.95rem;
+    padding: 0.6rem 0.7rem;
+    margin: 0.4rem 0.2rem 0.7rem 0.2rem;
+  }
+}
+
 /* Responsive Layout */
 @media (max-width: 1023px) {
   .header {
