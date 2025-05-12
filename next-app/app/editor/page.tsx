@@ -48,6 +48,7 @@ const AceEditor = dynamic(
     require('ace-builds/src-noconflict/mode-html');
     require('ace-builds/src-noconflict/mode-css');
     require('ace-builds/src-noconflict/mode-javascript');
+    // Themes
     require('ace-builds/src-noconflict/theme-ambiance');
     require('ace-builds/src-noconflict/theme-chaos');
     require('ace-builds/src-noconflict/theme-clouds_midnight');
@@ -70,6 +71,11 @@ const AceEditor = dynamic(
     require('ace-builds/src-noconflict/theme-twilight');
     require('ace-builds/src-noconflict/theme-vibrant_ink');
     require('ace-builds/src-noconflict/theme-github');
+    // Autocomplete & Snippets
+    require('ace-builds/src-noconflict/ext-language_tools');
+    require('ace-builds/src-noconflict/snippets/html');
+    require('ace-builds/src-noconflict/snippets/css');
+    require('ace-builds/src-noconflict/snippets/javascript');
     return ace;
   },
   { 
