@@ -88,7 +88,7 @@ const AceEditor = dynamic(
 // Gemini REST API call from frontend
 async function askGemini(question: string, html: string, css: string, js: string): Promise<string> {
   const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY || '';
-  if (!apiKey) return 'Gemini API key is not set.';
+  if (!apiKey) return 'Some Issue with the API Key Try Again Later';
   const prompt = `User Question: ${question}\n\nHere is my code:\n\nHTML:\n${html}\n\nCSS:\n${css}\n\nJavaScript:\n${js}\n\nPlease answer in a way that is helpful for a beginner. Please keep your response short and concise. Please be very specific and to the point.`;
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
   const body = {
@@ -110,6 +110,28 @@ async function askGemini(question: string, html: string, css: string, js: string
   }
 }
 
+function CopyButton({ code }: { code: string }) {
+  const [copied, setCopied] = useState(false);
+  return (
+    <button
+      className={styles.copyButton + (copied ? ' ' + styles.copied : '')}
+      onClick={() => {
+        navigator.clipboard.writeText(code);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 1200);
+      }}
+      title="Copy code"
+      type="button"
+      aria-label={copied ? 'Copied!' : 'Copy code'}
+    >
+      <span className="copyIcon" aria-hidden="true" style={{marginRight: '0.5em', display: 'inline-block'}}>
+        <svg className={styles.copyIcon} viewBox="0 0 20 20" fill="currentColor"><path d="M8 2a2 2 0 0 0-2 2v1H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1V4a2 2 0 0 0-2-2H8zm5 3v9a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1v1a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2V5h1a1 1 0 0 1 1 1zm-2-3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h3z"/></svg>
+      </span>
+      {copied ? 'Copied!' : 'Copy'}
+    </button>
+  );
+}
+
 export default function Editor() {
   const [activeEditor, setActiveEditor] = useState('html');
   const [htmlCode, setHtmlCode] = useState(`<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>Live Editor</title>\n  </head>\n  <body>\n    <h1>Hello, World!</h1>\n    <p>Start editing to see some magic happen :)</p>\n  </body>\n</html>`);
@@ -117,6 +139,8 @@ export default function Editor() {
   const [jsCode, setJsCode] = useState(`document.querySelector('h1').onclick = function() {\n  alert('Hello from JavaScript!');\n};`);
   const [isMounted, setIsMounted] = useState(false);
   const outputRef = useRef<HTMLIFrameElement>(null);
+  const chatMessagesRef = useRef<HTMLDivElement>(null);
+  const chatWindowRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
   const [editorTheme, setEditorTheme] = useState('monokai');
   const [themeIndex, setThemeIndex] = useState(0);
@@ -202,6 +226,27 @@ export default function Editor() {
     }
     setChatLoading(false);
   };
+
+  // Add auto-scroll effect when messages change or chat is opened
+  useEffect(() => {
+    if (chatMessagesRef.current) {
+      chatMessagesRef.current.scrollTop = chatMessagesRef.current.scrollHeight;
+    }
+  }, [chatMessages, chatOpen]);
+
+  // Add click outside handler
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (chatOpen && chatWindowRef.current && !chatWindowRef.current.contains(event.target as Node)) {
+        setChatOpen(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [chatOpen]);
 
   if (!isMounted) {
     return null;
@@ -362,12 +407,12 @@ export default function Editor() {
           </button>
         )}
         {chatOpen && (
-          <div className={styles.chatWindow}>
+          <div className={styles.chatWindow} ref={chatWindowRef}>
             <div className={styles.chatHeader}>
               <span>Adam AI Assistant</span>
               <button className={styles.closeChatBtn} onClick={() => setChatOpen(false)} title="Close">×</button>
             </div>
-            <div className={styles.chatMessages}>
+            <div className={styles.chatMessages} ref={chatMessagesRef}>
               {chatMessages.length === 0 && (
                 <div className={styles.chatWelcome}>Ask Adam AI anything about your HTML, CSS, or JS code!</div>
               )}
@@ -376,14 +421,28 @@ export default function Editor() {
                   {msg.role === 'ai' ? (
                     <ReactMarkdown
                       components={{
-                        code({node, className, children, ...props}) {
-                          // If the parent is a 'pre', it's a code block; otherwise, it's inline code
-                          const isBlock = (node && typeof node === 'object' && 'parent' in node && (node as any).parent?.name === 'pre');
-                          return isBlock ? (
-                            <pre className={styles.codeBlock}><code {...props}>{children}</code></pre>
-                          ) : (
-                            <code className={styles.inlineCode} {...props}>{children}</code>
+                        pre({children}) {
+                          // children can be a single element or an array
+                          let codeElement = Array.isArray(children) ? children[0] : children;
+                          if (!codeElement || typeof codeElement !== 'object' || !('props' in codeElement)) {
+                            return <pre style={{border: '2px solid orange', color: 'red'}}>NO CODE BLOCK DETECTED</pre>;
+                          }
+                          const codeString = codeElement.props.children;
+                          return (
+                            <div className={styles.codeBlockWrapper}>
+                              <CopyButton code={typeof codeString === 'string' ? codeString : Array.isArray(codeString) ? codeString.join('') : ''} />
+                              <pre>{children}</pre>
+                            </div>
                           );
+                        },
+                        code(props) {
+                          // ReactMarkdown v10+ passes inline as a prop only for inline code
+                          // @ts-ignore
+                          if (props.inline) {
+                            return <code {...props}>{props.children}</code>;
+                          }
+                          // Block code is handled by the pre renderer
+                          return <code {...props}>{props.children}</code>;
                         }
                       }}
                     >
