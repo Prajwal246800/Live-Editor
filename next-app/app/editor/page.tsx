@@ -104,9 +104,9 @@ async function askGemini(question: string, html: string, css: string, js: string
     if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
       return data.candidates[0].content.parts[0].text;
     }
-    return data.error?.message || 'No response from Gemini.';
+    return data.error?.message || 'No response from Adam AI.';
   } catch (e: any) {
-    return 'Error contacting Gemini: ' + (e?.message || e);
+    return 'Error contacting Adam AI: ' + (e?.message || e);
   }
 }
 
@@ -222,7 +222,7 @@ export default function Editor() {
       const aiResp = await askGemini(userMsg, htmlCode, cssCode, jsCode);
       setChatMessages((msgs) => [...msgs, { role: 'ai', text: aiResp }]);
     } catch (e) {
-      setChatMessages((msgs) => [...msgs, { role: 'ai', text: 'Sorry, there was an error contacting Gemini.' }]);
+      setChatMessages((msgs) => [...msgs, { role: 'ai', text: 'Sorry, there was an error contacting Adam AI.' }]);
     }
     setChatLoading(false);
   };
