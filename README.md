@@ -12,7 +12,7 @@ This project is a web-based compiler for HTML, CSS, and JavaScript, providing a 
 ### 6. Multiple File Support: Allowing users to work with different HTML, CSS, and JavaScript files simultaneously within the compiler for creating more complex web projects.
 ### 7. Responsive Design: It Is Also Made Responsive So That Mobile Users Can Also Code Easily
 
-## You can access a live demo of this compiler at [Adam Codes](https://heehello.netlify.app/).
+## You can access a live demo of this compiler at [Adam Codes](https://adamcodes.netlify.app/).
 
 ## Usage
 Write Code: Input your HTML, CSS, and JavaScript code in the respective sections.
